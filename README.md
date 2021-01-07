@@ -20,9 +20,22 @@ Prueba técnica Octopus Mining
 Se incluye un script en los archivos del proyecto (scriptfinal.sql) el cual crea la base de datos e inserta datos
 en las tablas country y currency.
 ```
+#### Cómo probar el proyecto ?
+
+`Windows con Laragon: `
+
+**Clonar Repo**
+1.- Abrir la terminal de laragon.
+
+<p align="center"><img src="https://1.bp.blogspot.com/-sOqvnuCNOrM/XRI2bsTlMNI/AAAAAAAAmio/S7jnL4uPR_kmhoEGV9Ry7lbFPcQ_3JI8QCLcBGAs/s1600/paso8.png" width="600"></p>
+
+2.- Debes clonar el repo en el directorio **"laragon/www"** con el comando **git clone https://github.com/zoekjs/pruebaOM.git**.
+
+3.- Entra a la carpeta del repo clonado (**prueba-OM**) a través de la terminal de laragon y ejecuta el comando **composer install**, para instalar las dependencias del proyecto.
+
+4.- Crea el archivo **.env** para establecer los parámetros de conexión con la DB.
 
 
-=======
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
