@@ -1,6 +1,15 @@
-<<<<<<< HEAD
-# pruebaOM
+## pruebaOM
 Prueba técnica Octopus Mining
+=======
+### Desarollo de API para registro de items
+
+`BD:`
+```
+Se incluye un script en los archivos del proyecto (scriptfinal.sql) el cual crea la base de datos e inserta datos
+en las tablas country y currency.
+```
+
+
 =======
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
