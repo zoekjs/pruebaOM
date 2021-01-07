@@ -3,6 +3,15 @@ Prueba técnica Octopus Mining
 =======
 ### Desarollo de API para registro de items
 
+#### Screenshots
+    * Registro de un item
+    
+    * Si no existe la categoría, se crea
+    
+    * Modificación de item
+    
+    * Eliminación del item
+
 `BD:`
 ```
 Se incluye un script en los archivos del proyecto (scriptfinal.sql) el cual crea la base de datos e inserta datos
