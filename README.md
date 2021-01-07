@@ -59,6 +59,19 @@ en las tablas country y currency.
             - (POST) /api/category (Permite registrar una categoria mediante los datos ID y name en formato JSON)
 ```
 
+#### Ejecutar pruebas unitarias a ItemController y CategoryController
+
+```
+Para ejecutar los unit test a ItemController desde la terminal de laragon, ejecutar el comando:
+
+     vendor\bin\phpunit.bat tests\Feature\Http\Controllers\ItemControllerTest.php
+     
+
+Para ejecutar los unit test a CategoryController desde la terminal de laragon, ejecutar el comando:
+
+     vendor\bin\phpunit.bat tests\Feature\Http\Controllers\CategoryControllerTest.php
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
