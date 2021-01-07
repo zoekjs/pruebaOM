@@ -4,9 +4,12 @@ Prueba técnica Octopus Mining
 ### Desarollo de API para registro de items
 
 #### Screenshots
+
+    * Si no existe la categoría, se crea
+    
     * Registro de un item
     
-    * Si no existe la categoría, se crea
+    * Buscar un item por el id
     
     * Modificación de item
     
