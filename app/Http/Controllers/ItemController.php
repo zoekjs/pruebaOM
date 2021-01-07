@@ -20,18 +20,22 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::getItems();
+        $data = [];
+        foreach ($items as $item){
+            $values = Array(
+                'id'            => $item->ID,
+                'title'         => $item->title,
+                'currency'      => $item->currency,
+                'country'       => $item->country,
+                'category_id'   => $item->category_id
+            );
+            array_push($data, $values);
+        }
+
+        return response()->json($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -93,7 +97,7 @@ class ItemController extends Controller
                 $data = $data = ArrayResponse::arrayConstructor('Bad Request', '400', 'El item ya existe en el sistema :(');
                 return response()->json($data, $data['code']);
             }
-        }catch(Exception $e){
+        }catch(\Exception $exception){
             $data = ArrayResponse::arrayConstructor('Unprocessable Entity', '422', 'datos ingresados invalidos');
             return response()->json($data, $data['code']);
         }
@@ -120,17 +124,6 @@ class ItemController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Item $item)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -139,33 +132,39 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        // Extraer valores del JSON
-        $params = ExtractParams::getParams($request);
+        try{
+            // Extraer valores del JSON
+            $params = ExtractParams::getParams($request);
 
-        $ID         = $item->ID;
-        $title      = $request->title;
-        $price      = $request->price;
-        $currency   = $request->currency;
-        $country    = $request->country;
+            $ID         = $item->ID;
+            $title      = $request->title;
+            $price      = $request->price;
+            $currency   = $request->currency;
+            $country    = $request->country;
 
-        $existCurrency = Currency::exist($currency);
-        // Si existe el tipo de moneda ingresado, se valida el país
-        if($existCurrency){
-            $existCountry = Country::exist($country);
-            // Si existe el país en la BD, se modifica el registro
-            if($existCountry){
-                // Modificar el registro
-                Item::updateItem($ID, $title, $price, $currency, $country);
-                $data = ArrayResponse::arrayConstructor('200', 'updated', 'El item fue modificado exitosamente :)');
-                return response()->json($data);
+            $existCurrency = Currency::exist($currency);
+            // Si existe el tipo de moneda ingresado, se valida el país
+            if($existCurrency){
+                $existCountry = Country::exist($country);
+                // Si existe el país en la BD, se modifica el registro
+                if($existCountry){
+                    // Modificar el registro
+                    Item::updateItem($ID, $title, $price, $currency, $country);
+                    $data = ArrayResponse::arrayConstructor('200', 'updated', 'El item fue modificado exitosamente :)');
+                    return response()->json($data);
+                }else{
+                    $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El país ingresado no existe en nuestros registros :(');
+                    return response()->json($data);
+                }
             }else{
-                $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El país ingresado no existe en nuestros registros :(');
+                $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El tipo de moneda ingresado no es válido :(');
                 return response()->json($data);
             }
-        }else{
-            $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El tipo de moneda ingresado no es válido :(');
+        }catch(\Exception $e){
+            $data = ArrayResponse::arrayConstructor('400', 'Bad Request', 'Los campos modificables son title, price, currency y country, intente nuevamente');
             return response()->json($data);
         }
+
         
     }
 
@@ -177,16 +176,21 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        // Se busca el item por su ID
-        $exist = Item::existByID($id);
-        // Si existe, se elimina
-        if($exist){
-            Item::deleteItem($id);
-            $data = ArrayResponse::arrayConstructor('200', 'deleted', 'El item fue eliminado correctamente :)');
-            return response()->json($data);
-        }else{
-            $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El item que desea eliminar no se encuentra en nuestros registros :(');
-            return response()->json($data);
+        try{
+            // Se busca el item por su ID
+            $exist = Item::existByID($id);
+            // Si existe, se elimina
+            if($exist){
+                Item::deleteItem($id);
+                $data = ArrayResponse::arrayConstructor('200', 'deleted', 'El item fue eliminado correctamente :)');
+                return response()->json($data);
+            }else{
+                $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El item que desea eliminar no se encuentra en nuestros registros :(');
+                return response()->json($data);
+            }
+        }catch(\Exception $e){
+            $data = ArrayResponse::arrayConstructor('400', 'Bad Request', 'El id que ingresó es inválido, intente nuevamente');
         }
+
     }
 }
