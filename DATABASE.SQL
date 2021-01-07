@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS prueba_om;
 USE prueba_om;
 
 CREATE TABLE IF NOT EXISTS category(
-    ID              INT(255) AUTOINCREMENT NOT NULL,
+    ID              INT(255) NOT NULL,
     name            VARCHAR(100) NOT NULL,
     created_at      TIMESTAMP DEFAULT NULL,
     updated_at      TIMESTAMP DEFAULT NULL,
@@ -10,16 +10,19 @@ CREATE TABLE IF NOT EXISTS category(
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS currency(
-    ID          INT(255) AUTOINCREMENT NOT NULL,
+    ID          INT(255) AUTO_INCREMENT NOT NULL,
     shortname   CHAR(3) NOT NULL,
     longname    VARCHAR(100) NOT NULL,
+    symbol      CHAR(3) NOT NULL,
     created_at  TIMESTAMP DEFAULT NULL,
     updated_at  TIMESTAMP DEFAULT NULL,
     CONSTRAINT pk_currency PRIMARY KEY(ID)
 )ENGINE=InnoDB;
 
+ALTER TABLE tablename CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS country(
-    ID          INT(255) AUTOINCREMENT NOT NULL,
+    ID          INT(255) NOT NULL,
     shortname   CHAR(3) NOT NULL,
     longname    VARCHAR(100) NOT NULL,
     created_at  TIMESTAMP DEFAULT NULL,
@@ -28,7 +31,7 @@ CREATE TABLE IF NOT EXISTS country(
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS item(
-    ID          INT AUTOINCREMENT NOT NULL,
+    ID          INT AUTO_INCREMENT NOT NULL,
     title       VARCHAR(100) NOT NULL,
     category_id INT,
     price       REAL NOT NULL,
