@@ -33,8 +33,23 @@ en las tablas country y currency.
 
 3.- Entra a la carpeta del repo clonado (**prueba-OM**) a través de la terminal de laragon y ejecuta el comando **composer install**, para instalar las dependencias del proyecto.
 
-4.- Crea el archivo **.env** para establecer los parámetros de conexión con la DB.
+4.- Crea el archivo **.env** para establecer los parámetros de conexión con la DB (MySQL fue utilizada en el desarrollo).
 
+5.- ejecuta el archivo **scriptfinal.sql** para crear la DB, sus tablas y rellenar con data las tablas currency y country.
+
+6.- A través de POSTMAN puedes realizar las peticiones a los distintos endpoints:
+```
+    Endpoints:
+        Items:
+            - (GET) /api/items (Retorna todos los items registrados)
+            - (POST) /api/items (Registrar items con la siguiente información en formato JSON (title, price, currency, country, category_id))
+            - (PUT) /api/items/<id> (Modifica un registro, los datos a modificar son los siguientes: title, price, currency, country, category_id)
+            - (DELETE) /api/items/<id> (Elimina un registro de la DB)
+            
+        Categories:
+            - (GET) /api/category (Retorna todas las categorías registradas)
+            - (POST) /api/category (Permite registrar una categoria mediante los datos ID y name en formato JSON)
+```
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
