@@ -72,6 +72,25 @@ Para ejecutar los unit test a CategoryController desde la terminal de laragon, e
      vendor\bin\phpunit.bat tests\Feature\Http\Controllers\CategoryControllerTest.php
 ```
 
+#### Pruebas realizadas
+
+```
+Se realizaron las siguientes pruebas a ItemController:
+
+    - Registrar un nuevo item
+    - Error si un item existe en la DB
+    - Error si se intenta registrar un item con una categoría inexistente
+    - Error si se intenta registrar un item con un país inexistente
+    - Error si se intenta registrar un item con un tipo de moneda inexistente
+    
+ 
+Se realizaron las siguientes pruebas a CategoryController:
+
+    - Registrar una nueva categoría
+    - Error si se intenta registrar una categoría con el mismo ID
+    
+```
+
  `Resultados de pruebas a ItemController: `
     
    https://prnt.sc/wiik4o
