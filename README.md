@@ -12,7 +12,7 @@ Prueba técnica Octopus Mining
     
     * Eliminación del item
 
-`BD:`
+#### Script para base de datos
 ```
 Se incluye un script en los archivos del proyecto (scriptfinal.sql) el cual crea la base de datos e inserta datos
 en las tablas country y currency.
