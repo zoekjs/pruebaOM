@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use App\Services\ArrayResponse;
+use App\Services\Exist;
+use App\Services\ExtractParams;
 
 class CategoryController extends Controller
 {
@@ -14,7 +17,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::getCategories();
+        $data = [];
+        foreach ($categories as $category){
+            $valores = array(
+                    'ID'    => $category->ID,
+                    'name'  => $category->name,
+            );
+            array_push($data, $valores);
+        }
+
+        return response()->json($data);
     }
 
     /**
@@ -35,7 +48,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = ExtractParams::getParams($request);
+        $exist = Category::exist($params->ID);
+        if(!$exist){
+            $ID     = $params->ID;
+            $name   = $params->name;
+            Category::createCategory($ID, $name);
+            $category = Category::all()->last();
+
+            $data = ArrayResponse::arrayConstructor('created', '201', 'Se ha creado la categoría '.$category['name'].' con el ID: '.$category['ID']);
+            return response()->json($data);
+        }else{
+            $data = ArrayResponse::arrayConstructor('400', 'Bad Request', 'La categoría que intenta crear ya existe en el sistema');
+            return response()->json($data);
+        }
     }
 
     /**
