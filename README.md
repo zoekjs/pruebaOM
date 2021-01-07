@@ -5,23 +5,23 @@ Prueba técnica Octopus Mining
 
 #### Screenshots
     
-    * Intento de registro con categoría no existente
-        https://prnt.sc/whzfsc
-    * Si no existe la categoría, se crea
-        https://prnt.sc/whzh94    
-    * Registro de un item
-        https://prnt.sc/whzl1b
-        https://prnt.sc/whzlgd
-    * Buscar un item por el id
-        https://prnt.sc/whzlst
-    * Modificación de item
-        https://prnt.sc/whzmam
-        https://prnt.sc/whzmht
-    * Buscar el item modificado
-        https://prnt.sc/whzmog
-    * Eliminación del item
-        https://prnt.sc/whzmw4
-        https://prnt.sc/whzn1k
+   * Intento de registro con categoría no existente
+       https://prnt.sc/whzfsc
+   * Si no existe la categoría, se crea
+       https://prnt.sc/whzh94    
+   * Registro de un item
+       https://prnt.sc/whzl1b
+       https://prnt.sc/whzlgd
+   * Buscar un item por el id
+       https://prnt.sc/whzlst
+   * Modificación de item
+       https://prnt.sc/whzmam
+       https://prnt.sc/whzmht
+   * Buscar el item modificado
+       https://prnt.sc/whzmog
+   * Eliminación del item
+       https://prnt.sc/whzmw4
+       https://prnt.sc/whzn1k
         
 #### Script para base de datos
 ```
