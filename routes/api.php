@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Items
+Route::resource('/item', 'ItemController');
+Route::resource('item.show', 'ItemController');
+Route::resource('item.update', 'ItemController');
+Route::resource('item.destroy', 'ItemController');
+
+// Categories
+Route::resource('/category', 'CategoryController');
+Route::resource('category.index', 'CategoryController');
