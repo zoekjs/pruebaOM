@@ -40,6 +40,16 @@ class Item extends Model
         return Country::select('ID')->where('longname', $country)->orWhere('shortname', $country)->firstOrFail();
     }
 
+    //Obtener todos los items registrados
+    static public function getItems(){
+        return \DB::table('item as i')
+        ->join('category as c', 'i.category_id', '=', 'c.ID')
+        ->join('country as co', 'i.country_id', '=', 'co.ID')
+        ->join('currency as cu', 'i.currency_id', '=', 'cu.ID')
+        ->select('i.ID', 'i.title', 'i.price', 'cu.shortname as currency', 'co.shortname as country', 'i.category_id')
+        ->get();;
+    }
+
     // Crear un nuevo item en la BD
     public function createItem($title, $category, $price, $currency, $country){
         $item = new Item;
