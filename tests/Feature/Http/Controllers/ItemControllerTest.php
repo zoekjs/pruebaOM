@@ -22,7 +22,7 @@ class ItemControllerTest extends TestCase
 
         /* Para que la prueba sea exitosa se espera un codigo 200 y que la respuesta de la API incluya un status
         created con code 201, además de validar que en la base de datos se encuentren algunos valores pasados en el JSON*/
-        $response->assertStatus(200)
+        $response->assertStatus(201)
                 ->assertJson([
                     'status' => 'created',
                     'code' => '201',    
@@ -65,9 +65,9 @@ class ItemControllerTest extends TestCase
             'category_id'   => '9999',
         ]);
 
-        // Para que la prueba sea exitosa esperamos obtener un codigo 200 (debido a que la petición fue correcta) y la respuesta JSON 
+        // Para que la prueba sea exitosa esperamos obtener un codigo 404 y la respuesta JSON 
         // de la API debe contener un code 404 debido a que la categoría no existe.
-        $response->assertStatus(200)
+        $response->assertStatus(404)
                 ->assertJson([
                     'status'    => 'not found',
                     'code'      => '404',
@@ -85,9 +85,9 @@ class ItemControllerTest extends TestCase
             'category_id'   => '9999',
         ]);
         
-        // Para que la prueba sea exitosa esperamos obtener un codigo 200 (debido a que la petición fue correcta) y la respuesta JSON 
+        // Para que la prueba sea exitosa esperamos obtener un codigo 404 y la respuesta JSON 
         // de la API debe contener un code 404 debido a que el país no existe.
-        $response->assertStatus(200)
+        $response->assertStatus(404)
                 ->assertJson([
                     'status'    => 'not found',
                     'code'      => '404'
@@ -106,9 +106,9 @@ class ItemControllerTest extends TestCase
             'category_id'   => '9999',
         ]);
 
-        // Para que la prueba sea exitosa esperamos obtener un codigo 200 (debido a que la petición fue correcta) y la respuesta JSON 
+        // Para que la prueba sea exitosa esperamos obtener un codigo 404 y la respuesta JSON 
         // de la API debe contener un code 404 debido a que el tipo de moneda no existe.
-        $response->assertStatus(200)
+        $response->assertStatus(404)
                 ->assertJson([
                     'status'    => 'not found',
                     'code'      => '404'
