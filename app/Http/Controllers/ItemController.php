@@ -77,21 +77,21 @@ class ItemController extends Controller
                             // Crear array para la respuesta
                             $data = ArrayResponse::arrayConstructor('created', '201', 'Item agregado exitosamente con el id '.$datos['ID']);
                             // Enviar respuesta en formato JSON
-                            return response()->json($data);
+                            return response()->json($data, $data['code']);
                         }else{
                             $data = ArrayResponse::arrayConstructor('not found', '404', 'El tipo de moneda ingresada no existe en nuestros registros :(');
                             // Enviar respuesta en formato JSON
-                            return response()->json($data);
+                            return response()->json($data, $data['code']);
                         }
                     }else{
                         $data = ArrayResponse::arrayConstructor('not found', '404', 'La categoría ingresada no existe en nuestros registros :(');
                         // Enviar respuesta en formato JSON
-                        return response()->json($data);
+                        return response()->json($data, $data['code']);
                     }
                 }else{
                     $data = ArrayResponse::arrayConstructor('not found', '404', 'El país ingresado no existe en nuestros registros :(');
                     // Enviar respuesta en formato JSON
-                    return response()->json($data);
+                    return response()->json($data, $data['code']);
                 }
             }else{
                 $data = $data = ArrayResponse::arrayConstructor('Bad Request', '400', 'El item ya existe en el sistema :(');
@@ -118,8 +118,8 @@ class ItemController extends Controller
             $item = Item::searchItem($id);
             return response()->json($item);
         }else{
-            $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El item que está buscando, no existe en nuestros registros :(');
-            return response()->json($data);
+            $data = ArrayResponse::arrayConstructor('not-found', '404', 'El item que está buscando, no existe en nuestros registros :(');
+            return response()->json($data, $data['code']);
         }
     }
 
@@ -150,19 +150,19 @@ class ItemController extends Controller
                 if($existCountry){
                     // Modificar el registro
                     Item::updateItem($ID, $title, $price, $currency, $country);
-                    $data = ArrayResponse::arrayConstructor('200', 'updated', 'El item fue modificado exitosamente :)');
-                    return response()->json($data);
+                    $data = ArrayResponse::arrayConstructor('updated', '200', 'El item fue modificado exitosamente :)');
+                    return response()->json($data, $data['code']);
                 }else{
-                    $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El país ingresado no existe en nuestros registros :(');
-                    return response()->json($data);
+                    $data = ArrayResponse::arrayConstructor('not-found', '404', 'El país ingresado no existe en nuestros registros :(');
+                    return response()->json($data, $data['code']);
                 }
             }else{
-                $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El tipo de moneda ingresado no es válido :(');
-                return response()->json($data);
+                $data = ArrayResponse::arrayConstructor('not-found', '404', 'El tipo de moneda ingresado no es válido :(');
+                return response()->json($data, $data['code']);
             }
         }catch(\Exception $e){
-            $data = ArrayResponse::arrayConstructor('400', 'Bad Request', 'Los campos modificables son title, price, currency y country, intente nuevamente');
-            return response()->json($data);
+            $data = ArrayResponse::arrayConstructor('Bad Request', '400', 'Los campos modificables son title, price, currency y country, intente nuevamente');
+            return response()->json($data, $data['code']);
         }
 
         
@@ -182,14 +182,15 @@ class ItemController extends Controller
             // Si existe, se elimina
             if($exist){
                 Item::deleteItem($id);
-                $data = ArrayResponse::arrayConstructor('200', 'deleted', 'El item fue eliminado correctamente :)');
-                return response()->json($data);
+                $data = ArrayResponse::arrayConstructor('deleted', '200', 'El item fue eliminado correctamente :)');
+                return response()->json($data, $data['code']);
             }else{
-                $data = ArrayResponse::arrayConstructor('404', 'not-found', 'El item que desea eliminar no se encuentra en nuestros registros :(');
-                return response()->json($data);
+                $data = ArrayResponse::arrayConstructor('not-found', '404', 'El item que desea eliminar no se encuentra en nuestros registros :(');
+                return response()->json($data, $data['code']);
             }
         }catch(\Exception $e){
-            $data = ArrayResponse::arrayConstructor('400', 'Bad Request', 'El id que ingresó es inválido, intente nuevamente');
+            $data = ArrayResponse::arrayConstructor('Bad Request', '400', 'El id que ingresó es inválido, intente nuevamente');
+            return response()->json($data, $data['code']);
         }
 
     }

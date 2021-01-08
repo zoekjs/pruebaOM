@@ -50,19 +50,19 @@ class CategoryController extends Controller
                     $category = Category::all()->last();
     
                     $data = ArrayResponse::arrayConstructor('created', '201', 'Se ha creado la categoría '.$category['name'].' con el ID: '.$category['ID']);
-                    return response()->json($data);
+                    return response()->json($data, $data['code']);
                 }else{
                     $data = ArrayResponse::arrayConstructor('Bad Request', '400', 'El id debe ser un valor númerico, intente nuevamente');
-                    return response()->json($data);
+                    return response()->json($data, $data['code']);
                 }
                 
             }else{
                 $data = ArrayResponse::arrayConstructor('Bad Request', '400', 'La categoría que intenta crear ya existe en el sistema');
-                return response()->json($data);
+                return response()->json($data, $data['code']);
             }
         }catch(\Exception $e){
             $data = ArrayResponse::arrayConstructor('Bad Request', '400', 'Los datos ingresados son inválidos, intente nuevamente');
-            return response()->json($data);
+            return response()->json($data, $data['code']);
         }
 
     }
